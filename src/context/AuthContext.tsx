@@ -34,7 +34,6 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [dbInstance, setDbInstance] = useState<any>(null);
 
   useEffect(() => {
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
     const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
 
     if (Object.keys(firebaseConfig).length > 0 && !firebaseApp) {
@@ -75,7 +74,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, []);
 
-  const login = (username: string, token: string) => {
+  const login = (_username: string, token: string) => {
     setIsAdminAuthenticated(true);
     setAdminToken(token);
     sessionStorage.setItem('adminToken', token); // Persist token

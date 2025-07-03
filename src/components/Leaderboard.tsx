@@ -32,11 +32,11 @@ const Leaderboard: React.FC<{ scholars: Scholar[] }> = ({ scholars: propScholars
   const WEEKLY_TARGET = 200; // Define the weekly target for each floor
 
   // State for adding points to a floor
-  const [selectedFloorForPoints, setSelectedFloorForPoints] = useState<string>('');
-  const [pointsToAdd, setPointsToAdd] = useState<number>(0);
-  const [addPointsMessage, setAddPointsMessage] = useState<string | null>(null);
-  const [addPointsError, setAddPointsError] = useState<string | null>(null);
-  const [addingPoints, setAddingPoints] = useState<boolean>(false);
+  // const [selectedFloorForPoints, setSelectedFloorForPoints] = useState<string>('');
+  // const [pointsToAdd, setPointsToAdd] = useState<number>(0);
+  // const [addPointsMessage, setAddPointsMessage] = useState<string | null>(null);
+  // const [addPointsError, setAddPointsError] = useState<string | null>(null);
+  // const [addingPoints, setAddingPoints] = useState<boolean>(false);
 
   // Effect 1: Initialize floorPointsState based on propScholars.
   // This runs once on mount and whenever propScholars changes (e.g., if parent App updates them).
@@ -86,42 +86,42 @@ const Leaderboard: React.FC<{ scholars: Scholar[] }> = ({ scholars: propScholars
     setFloors(aggregatedFloors);
   }, [floorPointsState, WEEKLY_TARGET]); // Re-run whenever floorPointsState or target changes
 
-  const showAddPointsMessage = (msg: string, isError: boolean = false) => {
-    setAddPointsMessage(msg);
-    setAddPointsError(isError ? msg : null);
-    setTimeout(() => {
-      setAddPointsMessage(null);
-      setAddPointsError(null);
-    }, 3000);
-  };
+  // const showAddPointsMessage = (msg: string, isError: boolean = false) => {
+  //   setAddPointsMessage(msg);
+  //   setAddPointsError(isError ? msg : null);
+  //   setTimeout(() => {
+  //     setAddPointsMessage(null);
+  //     setAddPointsError(null);
+  //   }, 3000);
+  // };
 
-  const handleAddPointsToFloor = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!selectedFloorForPoints || pointsToAdd <= 0) {
-      showAddPointsMessage("Please select a floor and enter a positive number of points.", true);
-      return;
-    }
+  // const handleAddPointsToFloor = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!selectedFloorForPoints || pointsToAdd <= 0) {
+  //     showAddPointsMessage("Please select a floor and enter a positive number of points.", true);
+  //     return;
+  //   }
 
-    setAddingPoints(true);
-    await new Promise(resolve => setTimeout(resolve, 500)); // Simulate API delay
+  //   setAddingPoints(true);
+  //   await new Promise(resolve => setTimeout(resolve, 500)); // Simulate API delay
 
-    try {
-      // Update the specific floor's total points in floorPointsState
-      setFloorPointsState(prev => ({
-        ...prev,
-        [selectedFloorForPoints]: (prev[selectedFloorForPoints] || 0) + pointsToAdd
-      }));
+  //   try {
+  //     // Update the specific floor's total points in floorPointsState
+  //     setFloorPointsState(prev => ({
+  //       ...prev,
+  //       [selectedFloorForPoints]: (prev[selectedFloorForPoints] || 0) + pointsToAdd
+  //     }));
 
-      showAddPointsMessage(`Successfully added ${pointsToAdd} points to ${selectedFloorForPoints}!`);
-      setSelectedFloorForPoints('');
-      setPointsToAdd(0);
-    } catch (err) {
-      console.error("Error adding points to floor:", err);
-      showAddPointsMessage("Failed to add points to floor.", true);
-    } finally {
-      setAddingPoints(false);
-    }
-  };
+  //     showAddPointsMessage(`Successfully added ${pointsToAdd} points to ${selectedFloorForPoints}!`);
+  //     setSelectedFloorForPoints('');
+  //     setPointsToAdd(0);
+  //   } catch (err) {
+  //     console.error("Error adding points to floor:", err);
+  //     showAddPointsMessage("Failed to add points to floor.", true);
+  //   } finally {
+  //     setAddingPoints(false);
+  //   }
+  // };
 
   if (loading) {
     return (

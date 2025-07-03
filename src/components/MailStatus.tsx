@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 // Define the Scholar interface (assuming it's globally available or defined elsewhere)
-interface Scholar {
-  id: string;
-  name: string;
-  floorPoints: number;
-  floor?: string; // Optional, as not directly used in MailStatus but good for consistency
-}
+// interface Scholar {
+//   id: string;
+//   name: string;
+//   floorPoints: number;
+//   floor?: string; 
+// }
 
 // Define the Mail interface
 interface Mail {
